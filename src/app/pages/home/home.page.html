@@ -1,63 +1,96 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      <div class="logo-container">
-        <img src="assets/pokedex-logo.png" alt="Pokédex" class="pokedex-logo" *ngIf="logoExists; else textLogo">
-        <ng-template #textLogo>
-          <span class="text-logo">Pokédex</span>
-        </ng-template>
-      </div>
-    </ion-title>
-  </ion-toolbar>
+	<ion-toolbar>
+		<ion-title>
+			<div class="logo-container">
+				<img
+					src="assets/pokedex-logo.png"
+					alt="Pokédex"
+					class="pokedex-logo"
+					*ngIf="logoExists; else textLogo"
+				/>
+				<ng-template #textLogo>
+					<span class="text-logo">Pokédex</span>
+				</ng-template>
+			</div>
+		</ion-title>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="search-container">
-    <ion-searchbar (ionInput)="filterPokemons($event)" placeholder="Search Pokémon" 
-                  animated debounce="300" class="custom-searchbar"></ion-searchbar>
-  </div>
-  
-  <div *ngIf="loading" class="loading-container">
-    <ion-spinner name="crescent"></ion-spinner>
-    <p>Loading Pokémon...</p>
-  </div>
+	<div class="search-container">
+		<ion-searchbar
+			(ionInput)="filterPokemons($event)"
+			placeholder="Search Pokémon"
+			animated
+			debounce="300"
+			class="custom-searchbar"
+		></ion-searchbar>
+	</div>
 
-  <div *ngIf="error" class="error-container">
-    <ion-icon name="alert-circle-outline" color="danger" size="large"></ion-icon>
-    <p>Failed to load Pokémon data. Please try again later.</p>
-    <ion-button (click)="loadPokemons()" color="primary">Retry</ion-button>
-  </div>
+	<div *ngIf="loading" class="loading-container">
+		<ion-spinner name="crescent"></ion-spinner>
+		<p>Loading Pokémon...</p>
+	</div>
 
-  <div *ngIf="!loading && !error && filteredPokemons.length === 0" class="empty-container">
-    <ion-icon name="search-outline" size="large"></ion-icon>
-    <p>No Pokémon found. Try a different search term.</p>
-  </div>
+	<div *ngIf="error" class="error-container">
+		<ion-icon
+			name="alert-circle-outline"
+			color="danger"
+			size="large"
+		></ion-icon>
+		<p>Failed to load Pokémon data. Please try again later.</p>
+		<ion-button (click)="loadPokemons()" color="primary">Retry</ion-button>
+	</div>
 
-  <ion-grid *ngIf="!loading && !error && filteredPokemons.length > 0">
-    <ion-row>
-      <ion-col size="6" size-md="4" size-lg="3" *ngFor="let pokemon of filteredPokemons">
-        <ion-card [routerLink]="['/details', pokemon.id]" class="pokemon-card">
-          <div class="pokemon-number">#{{ pokemon.id.toString().padStart(3, '0') }}</div>
-          <div class="image-container">
-            <img [src]="pokemon.image" [alt]="pokemon.name" />
-          </div>
-          <ion-card-header>
-            <ion-card-title>{{ pokemon.name | titlecase }}</ion-card-title>
-          </ion-card-header>
-          <div class="type-container" *ngIf="pokemon.types">
-            <ion-chip *ngFor="let type of pokemon.types" [ngClass]="type" class="type-chip">
-              {{ type | titlecase }}
-            </ion-chip>
-          </div>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+	<div
+		*ngIf="!loading && !error && filteredPokemons.length === 0"
+		class="empty-container"
+	>
+		<ion-icon name="search-outline" size="large"></ion-icon>
+		<p>No Pokémon found. Try a different search term.</p>
+	</div>
 
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMorePokemon($event)" *ngIf="!loading && hasMorePokemon && !isFiltering">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more Pokémon...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+	<ion-grid *ngIf="!loading && !error && filteredPokemons.length > 0">
+		<ion-row>
+			<ion-col
+				size="6"
+				size-md="4"
+				size-lg="3"
+				*ngFor="let pokemon of filteredPokemons"
+			>
+				<ion-card [routerLink]="['/details', pokemon.id]" class="pokemon-card">
+					<div class="pokemon-number">
+						#{{ pokemon.id.toString().padStart(3, '0') }}
+					</div>
+					<div class="image-container">
+						<img [src]="pokemon.image" [alt]="pokemon.name" />
+					</div>
+					<ion-card-header>
+						<ion-card-title>{{ pokemon.name | titlecase }}</ion-card-title>
+					</ion-card-header>
+					<div class="type-container" *ngIf="pokemon.types">
+						<ion-chip
+							*ngFor="let type of pokemon.types"
+							[ngClass]="type"
+							class="type-chip"
+						>
+							{{ type | titlecase }}
+						</ion-chip>
+					</div>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<ion-infinite-scroll
+		threshold="100px"
+		(ionInfinite)="loadMorePokemon($event)"
+		*ngIf="!loading && hasMorePokemon && !isFiltering"
+	>
+		<ion-infinite-scroll-content
+			loadingSpinner="bubbles"
+			loadingText="Loading more Pokémon..."
+		>
+		</ion-infinite-scroll-content>
+	</ion-infinite-scroll>
 </ion-content>

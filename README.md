@@ -76,9 +76,11 @@ Este aplicativo utiliza a [PokéAPI](https://pokeapi.co/) para buscar dados dos 
 ## Capturas de Tela
 
 ### Página Inicial
+
 ![Página Inicial](https://via.placeholder.com/800x400?text=Página+Inicial)
 
 ### Página de Detalhes
+
 ![Página de Detalhes](https://via.placeholder.com/800x400?text=Página+de+Detalhes)
 
 ## Contribuindo

@@ -8,12 +8,12 @@ import { DetailsPageRoutingModule } from './details-routing.module';
 import { DetailsPage } from './details.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    DetailsPageRoutingModule,
-    DetailsPage // Import the standalone component
-  ]
+	imports: [
+		CommonModule,
+		FormsModule,
+		IonicModule,
+		DetailsPageRoutingModule,
+		DetailsPage // Import the standalone component
+	]
 })
 export class DetailsPageModule {}

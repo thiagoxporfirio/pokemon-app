@@ -1,53 +1,64 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
-    </ion-buttons>
-    <ion-title>{{ pokemon?.name | titlecase }}</ion-title>
-  </ion-toolbar>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref="/home"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{ pokemon?.name | titlecase }}</ion-title>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content *ngIf="pokemon" class="ion-padding">
-  <div class="pokemon-container">
-    <ion-card>
-      <div class="pokemon-image-container">
-        <img [src]="pokemon.image" alt="{{ pokemon.name }}" class="pokemon-image" />
-      </div>
-      
-      <ion-card-header>
-        <ion-card-title>{{ pokemon.name | titlecase }}</ion-card-title>
-      </ion-card-header>
-      
-      <ion-card-content>
-        <div class="pokemon-info">
-          <div class="info-row">
-            <span class="info-label">Height:</span>
-            <span class="info-value">{{ pokemon.height / 10 }} m</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Weight:</span>
-            <span class="info-value">{{ pokemon.weight / 10 }} kg</span>
-          </div>
-          
-          <div class="info-row">
-            <span class="info-label">Types:</span>
-            <div class="tags-container">
-              <ion-chip *ngFor="let type of pokemon.types" class="type-tag" [ngClass]="type">
-                {{ type | titlecase }}
-              </ion-chip>
-            </div>
-          </div>
-          
-          <div class="info-row">
-            <span class="info-label">Abilities:</span>
-            <div class="tags-container">
-              <ion-chip *ngFor="let ability of pokemon.abilities" class="ability-tag">
-                {{ ability | titlecase }}
-              </ion-chip>
-            </div>
-          </div>
-        </div>
-      </ion-card-content>
-    </ion-card>
-  </div>
+	<div class="pokemon-container">
+		<ion-card>
+			<div class="pokemon-image-container">
+				<img
+					[src]="pokemon.image"
+					alt="{{ pokemon.name }}"
+					class="pokemon-image"
+				/>
+			</div>
+
+			<ion-card-header>
+				<ion-card-title>{{ pokemon.name | titlecase }}</ion-card-title>
+			</ion-card-header>
+
+			<ion-card-content>
+				<div class="pokemon-info">
+					<div class="info-row">
+						<span class="info-label">Height:</span>
+						<span class="info-value">{{ pokemon.height / 10 }} m</span>
+					</div>
+					<div class="info-row">
+						<span class="info-label">Weight:</span>
+						<span class="info-value">{{ pokemon.weight / 10 }} kg</span>
+					</div>
+
+					<div class="info-row">
+						<span class="info-label">Types:</span>
+						<div class="tags-container">
+							<ion-chip
+								*ngFor="let type of pokemon.types"
+								class="type-tag"
+								[ngClass]="type"
+							>
+								{{ type | titlecase }}
+							</ion-chip>
+						</div>
+					</div>
+
+					<div class="info-row">
+						<span class="info-label">Abilities:</span>
+						<div class="tags-container">
+							<ion-chip
+								*ngFor="let ability of pokemon.abilities"
+								class="ability-tag"
+							>
+								{{ ability | titlecase }}
+							</ion-chip>
+						</div>
+					</div>
+				</div>
+			</ion-card-content>
+		</ion-card>
+	</div>
 </ion-content>
