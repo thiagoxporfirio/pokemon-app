@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Pokédex</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar (ionInput)="filterPokemons($event)" placeholder="Search Pokémon"></ion-searchbar>
+
+  <ion-spinner *ngIf="loading" name="crescent" style="margin: 20px auto; display: block;"></ion-spinner>
+
+  <ion-list *ngIf="!loading">
+    <ion-item *ngFor="let pokemon of filteredPokemons" [routerLink]="['/details', pokemon.id]">
+      <ion-thumbnail slot="start">
+        <img [src]="pokemon.image" />
+      </ion-thumbnail>
+      <ion-label>{{ pokemon.name | titlecase }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

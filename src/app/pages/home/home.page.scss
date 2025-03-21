@@ -1,0 +1,37 @@
+ion-header {
+  --background: #ffcb05; /* Pokémon theme color */
+  color: #2a75bb;
+  font-weight: bold;
+}
+
+ion-title {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+ion-searchbar {
+  margin: 10px auto; /* Center horizontally */
+  width: 90%; /* Adjust width for responsiveness */
+  max-width: 600px; /* Limit maximum width */
+  --background: #fff;
+  --placeholder-color: #888;
+  --color: #2a75bb;
+  border-radius: 10px;
+}
+
+ion-item {
+  border-radius: 10px;
+  margin: 5px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+ion-item:hover {
+  transform: scale(1.02);
+}
+
+ion-thumbnail img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
