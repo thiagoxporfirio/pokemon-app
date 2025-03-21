@@ -7,17 +7,47 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="pokemon">
-  <ion-card>
-    <img [src]="pokemon.image" />
-    <ion-card-header>
-      <ion-card-title>{{ pokemon.name | titlecase }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p><strong>Height:</strong> {{ pokemon.height }}</p>
-      <p><strong>Weight:</strong> {{ pokemon.weight }}</p>
-      <p><strong>Types:</strong> {{ pokemon.types.join(', ') | titlecase }}</p>
-      <p><strong>Abilities:</strong> {{ pokemon.abilities.join(', ') | titlecase }}</p>
-    </ion-card-content>
-  </ion-card>
+<ion-content *ngIf="pokemon" class="ion-padding">
+  <div class="pokemon-container">
+    <ion-card>
+      <div class="pokemon-image-container">
+        <img [src]="pokemon.image" alt="{{ pokemon.name }}" class="pokemon-image" />
+      </div>
+      
+      <ion-card-header>
+        <ion-card-title>{{ pokemon.name | titlecase }}</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <div class="pokemon-info">
+          <div class="info-row">
+            <span class="info-label">Height:</span>
+            <span class="info-value">{{ pokemon.height / 10 }} m</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Weight:</span>
+            <span class="info-value">{{ pokemon.weight / 10 }} kg</span>
+          </div>
+          
+          <div class="info-row">
+            <span class="info-label">Types:</span>
+            <div class="tags-container">
+              <ion-chip *ngFor="let type of pokemon.types" class="type-tag" [ngClass]="type">
+                {{ type | titlecase }}
+              </ion-chip>
+            </div>
+          </div>
+          
+          <div class="info-row">
+            <span class="info-label">Abilities:</span>
+            <div class="tags-container">
+              <ion-chip *ngFor="let ability of pokemon.abilities" class="ability-tag">
+                {{ ability | titlecase }}
+              </ion-chip>
+            </div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
